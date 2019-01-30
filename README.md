@@ -1,12 +1,16 @@
 # LDBus
 > 利用LiveData的生命周期属性，封装的消息总线组件
 
-## 饮用
+## 引用
 ```groovy
-compile 'cn.zgy.bus:ldbus:0.0.1'
+compile 'cn.zgy.bus:ldbus:0.0.2'（采用hook源码的方式，更改mLastVersion）
+或者：
+compile 'cn.zgy.livedatabus:LiveDataBus:0.0.2'（本地逻辑实现，不修改源码）
 ```
 
 ## 使用
+
+### 接收消息
 
 1. 跟随生命周期（observe）
 
@@ -66,4 +70,15 @@ LDBus.get().with("key", String.class)
 注销：
 LDBus.get().with("key", String.class)
                 .removeObserver(observer);
+```
+
+### 发送消息
+主线程：
+```java
+LDBus.get().with("key").setValue("消息");
+```
+
+子线程：
+```java
+LDBus.get().with("key").postValue("异步消息");
 ```

@@ -8,8 +8,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import cn.zgy.livedatabus.LiveDataBus;
 
-import cn.zgy.bus.LDBus;
 
 public class TestActivity extends AppCompatActivity {
 
@@ -31,7 +31,7 @@ public class TestActivity extends AppCompatActivity {
 
 
         if(type.equals("observer")){
-            LDBus.get().with("hello1", String.class)
+            LiveDataBus.get().with("hello1", String.class)
                     .observe(this, new Observer<String>() {
                         @Override
                         public void onChanged(@Nullable String s) {
@@ -39,7 +39,7 @@ public class TestActivity extends AppCompatActivity {
                         }
                     });
         }else if(type.equals("sticky")){
-            LDBus.get().with("hello1", String.class)
+            LiveDataBus.get().with("hello1", String.class)
                     .observeSticky(this, new Observer<String>() {
                         @Override
                         public void onChanged(@Nullable String s) {
@@ -48,10 +48,10 @@ public class TestActivity extends AppCompatActivity {
                     });
         }
         else if(type.equals("forever")){
-            LDBus.get().with("hello1", String.class)
+            LiveDataBus.get().with("hello1", String.class)
                     .observeForever(observer);
         }else if(type.equals("stickyForever")){
-            LDBus.get().with("hello1", String.class)
+            LiveDataBus.get().with("hello1", String.class)
                     .observeStickyForever(observer);
         }
 
@@ -72,7 +72,7 @@ public class TestActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        LDBus.get().with("hello1", String.class)
+        LiveDataBus.get().with("hello1", String.class)
                 .removeObserver(observer);
     }
 }

@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.Toast;
 
 import cn.zgy.bus.LDBus;
+import cn.zgy.livedatabus.LiveDataBus;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        LDBus.get().with("hello1", String.class)
+        LiveDataBus.get().with("hello1", String.class)
                 .observe(MainActivity.this, new Observer<String>() {
                     @Override
                     public void onChanged(@Nullable String s) {
@@ -68,12 +70,12 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.hello5).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                LDBus.get().with("hello1").setValue("消息");
+//                LiveDataBus.get().with("hello1").setValue("消息");
 
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        LDBus.get().with("hello1").postValue("异步消息");
+                        LiveDataBus.get().with("hello1").postValue("异步消息");
                     }
                 }).start();
 

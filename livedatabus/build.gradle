@@ -27,13 +27,12 @@ android {
 
 publish {
     userOrg = 'miaoyanrssq' // bintray 上注册的用户名
-    groupId = 'cn.zgy.bus' // 包名
-    artifactId = 'ldbus' // library名
+    groupId = 'cn.zgy.livedatabus' // 包名
+    artifactId = 'LiveDataBus' // library名
     publishVersion = '0.0.2' // 版本号
     desc = 'livedata事件总线'
     website = 'https://github.com/miaoyanrssq/LDBus'
 }
-
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
