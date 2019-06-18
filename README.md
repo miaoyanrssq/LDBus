@@ -82,3 +82,6 @@ LDBus.get().with("key").setValue("消息");
 ```java
 LDBus.get().with("key").postValue("异步消息");
 ```
+
+# 混淆
+-keep class android.arch.core.internal.SafeIterableMap{*;}
